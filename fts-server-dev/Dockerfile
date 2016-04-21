@@ -10,10 +10,10 @@ RUN /usr/bin/rpm --import /tmp/RPM-GPG-KEY-cern \
         && rm -rf /var/cache/yum
 
 # Add EPEL repos
-ADD  http://mirror.switch.ch/ftp/mirror/epel/7/x86_64/e/epel-release-7-5.noarch.rpm  /tmp/epel-release-7-5.noarch.rpm
-RUN  yum localinstall /tmp/epel-release-7-5.noarch.rpm -y \
+ADD  http://mirror.switch.ch/ftp/mirror/epel/7/x86_64/e/epel-release-7-6.noarch.rpm  /tmp/epel-release-7-6.noarch.rpm
+RUN  yum localinstall /tmp/epel-release-7-6.noarch.rpm -y \
         && /usr/bin/yum --enablerepo=*-testing clean all \
-        && rm /tmp/epel-release-7-5.noarch.rpm \
+        && rm /tmp/epel-release-7-6.noarch.rpm \
         && rm -rf /var/cache/yum
 
 # add FTS repo
@@ -24,13 +24,26 @@ ADD http://grid-deployment.web.cern.ch/grid-deployment/dms/fts3/repos/fts3-conti
 ADD http://grid-deployment.web.cern.ch/grid-deployment/dms/lcgutil/repos/dmc-ci-el7.repo /etc/yum.repos.d/dmc.repo
 
 # add trustanchors
-#ADD http://repository.egi.eu/sw/production/cas/1/current/repo-files/EGI-trustanchors.repo /etc/yum.repos.d/EGI-trustanchors.repo
+ADD http://repository.egi.eu/sw/production/cas/1/current/repo-files/EGI-trustanchors.repo /etc/yum.repos.d/EGI-trustanchors.repo
 
 #add install certificates ( they will go then in a separate volume)
 #RUN /usr/bin/yum install -y ca-policy-egi-core fetch-crl
 
 #install fts packages
 RUN /usr/bin/yum install -y fts-server fts-client fts-mysql fts-server-selinux fts-msg fts-infosys
+
+#install gfal2
+RUN /usr/bin/yum install -y gfal2-all gfal2-plugin-mock
+
+#install gfal2
+RUN /usr/bin/yum install -y ca-policy-egi-core
+
+
+#install the voms stuff
+
+RUN /usr/bin/yum install -y voms-config-wlcg  voms-config-vo-dteam
+
+
 
 
 # install relevant CERN packages for docker containers
@@ -42,3 +55,5 @@ RUN /usr/bin/yum install -y fts-server fts-client fts-mysql fts-server-selinux f
 
 EXPOSE 8443
 EXPOSE 2170
+
+CMD /usr/sbin/fts_server -t 25 -n | tee /var/log/fts3/fts3server.log

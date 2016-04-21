@@ -1,0 +1,6 @@
+fts-server:
+    image: docker.cern.ch/fts/fts-server:dev-21042016
+    volumes:
+     - /etc/fts3:/etc/fts3
+     - /var/log/fts3:/var/log/fts3
+
