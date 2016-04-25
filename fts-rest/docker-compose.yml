@@ -1,0 +1,8 @@
+fts-rest:
+    image: docker.cern.ch/fts/fts-rest:dev-25042016
+    volumes:
+     - /etc/fts3:/etc/fts3
+     - /var/log/fts3rest:/var/log/fts3rest
+    environment:
+     - "constraint:node==ft-xe65ot56gni-1-b2nvlgobelzf-swarm-node-2vaxrrydedbw.novalocal"
+    entrypoint: sleep 1000000000000000000000
