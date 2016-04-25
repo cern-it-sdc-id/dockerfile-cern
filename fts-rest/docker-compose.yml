@@ -5,4 +5,7 @@ fts-rest:
      - /var/log/fts3rest:/var/log/fts3rest
     environment:
      - "constraint:node==ft-xe65ot56gni-1-b2nvlgobelzf-swarm-node-2vaxrrydedbw.novalocal"
-    entrypoint: sleep 1000000000000000000000
+    #entrypoint: /usr/sbin/apachectl -DFOREGROUND
+    entrypoint: sleep 1000000000000000000000000000
+    ports:
+     - "8446:8446"

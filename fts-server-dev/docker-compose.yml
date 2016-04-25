@@ -4,4 +4,6 @@ fts-server:
      - /etc/fts3:/etc/fts3
      - /var/log/fts3:/var/log/fts3
     environment:
-    - "constraint:node==ft-xe65ot56gni-1-b2nvlgobelzf-swarm-node-2vaxrrydedbw.novalocal"
+     - "constraint:node==ft-xe65ot56gni-1-b2nvlgobelzf-swarm-node-2vaxrrydedbw.novalocal"
+    ports:
+     - "8446:8446"
