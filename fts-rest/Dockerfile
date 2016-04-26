@@ -31,7 +31,7 @@ ADD http://repository.egi.eu/sw/production/cas/1/current/repo-files/EGI-trustanc
 RUN /usr/bin/yum install -y ca-policy-egi-core fetch-crl
 
 #install fts packages
-RUN /usr/bin/yum install -y fts-rest-selinux fts-rest httpd
+RUN /usr/bin/yum install -y fts-rest-selinux fts-rest httpd MySQL-python 
 
 RUN /usr/bin/yum install -y voms-config-wlcg  voms-config-vo-dteam
 
