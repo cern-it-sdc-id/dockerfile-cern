@@ -1,0 +1,5 @@
+docker tag 7daa9eeb9a01 docker.cern.ch/fts/fts-mon:dev-26042016
+
+docker push docker.cern.ch/fts/fts-mon:dev-26042016
+
+docker pull docker.cern.ch/fts/fts-mon:dev-26042016
