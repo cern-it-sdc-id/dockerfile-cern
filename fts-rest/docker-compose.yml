@@ -9,3 +9,5 @@ fts-rest:
     entrypoint: sleep 1000000000000000000000000000
     ports:
      - "8446:8446"
+    domainname: cern.ch
+    hostname: ft-xe65ot56gni-1-b2nvlgobelzf-swarm-node-2vaxrrydedbw
